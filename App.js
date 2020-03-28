@@ -1,22 +1,29 @@
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import {Home} from './app/views/Home';
+import * as React from 'react';
+import { Button, View, Text } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
 
-export default function App() {
+import {Home} from './app/views/Home_routing';
+import {Detalls} from './app/views/Detalls_routing';
+
+/**
+ * Modificacions al component principal d'entrada de React
+ * per incloure encaminaments, però no components
+ * @version 1.0 28.03.2020
+ * @author sergi.grau@fje.edu
+ */
+
+const Stack = createStackNavigator();
+
+function App() {
   return (
-    <View style={styles.container}>
-      <Text>DAW2</Text>
-      <Home></Home>
-    </View>
-    
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="Home">
+        <Stack.Screen name="Home" component={Home} />
+        <Stack.Screen name="Detall" component={Detalls} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+export default App;

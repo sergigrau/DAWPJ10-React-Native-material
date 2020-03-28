@@ -3,11 +3,11 @@ import { Text, View } from 'react-native';
 
 /**
  * Classe que hereta de Component i que permet utilitzar 
- * propietats inmutables
+ * propietats inmutables i estats
  * @version 1.0 23.03.2020
  * @author sergi.grau@fje.edu
  */
-export class Login extends React.Component {
+export class M01_PropsStates extends React.Component {
     constructor(props) {
         super(props);
         this.state={logat:false};
