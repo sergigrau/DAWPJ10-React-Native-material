@@ -19,7 +19,7 @@ const estils = StyleSheet.create({
   }
 });
 
-export class Home extends React.Component {
+export class M00_Home extends React.Component {
     render() {
         return (
             <View style={estils.contenidor}>

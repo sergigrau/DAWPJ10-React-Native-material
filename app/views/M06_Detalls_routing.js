@@ -17,19 +17,16 @@ const estils = StyleSheet.create({
   }
 });
 
-export class Home extends React.Component {
+export class M06_Detalls extends React.Component {
     render() {
       return (
         <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-          <Text>Pantalla Home</Text>
-          <Button
-            title="Anar a Detalls"
-            onPress={() => this.props.navigation.navigate('Detall', {
-              nom: 'DAW2',
-            })}
-          />
+          <Text>Pantalla Detall {JSON.stringify(this.props.route.params.nom)}</Text>
+          <Text>el curs és: </Text>
+    
+          <Button title="Tornar a Home" onPress={() => this.props.navigation.navigate('Home')} />
+          <Button title="Go back" onPress={() => this.props.navigation.navigate.goBack()} />
         </View>
       );
-
     }
 }

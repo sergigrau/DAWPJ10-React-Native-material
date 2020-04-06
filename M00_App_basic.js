@@ -1,7 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-
-import {Home} from './app/views/Home';
+import {M00_Home} from './app/views/M00_Home';
 
 /**
  * Modificacions al component principal d'entrada de React
@@ -15,7 +14,7 @@ export default function App() {
   return (
     <View style={styles.container}>
       <Text>DAW2</Text>
-      <Home></Home>
+      <M00_Home></M00_Home>
     </View>
     
   );
