@@ -1,113 +1,73 @@
 import React from 'react';
+import * as SQLite from 'expo-sqlite';
+import { openDatabase } from "expo-sqlite";
+
 import { TouchableHighlight, StyleSheet, Image, Text, View } from 'react-native';
 
 
 /**
- * Classe que hereta de Component i que implementa un component
- * independent en l'app. És un component bàsic sense estils
- * Fa servir routing
- * @version 1.0 23.03.2020
+ * Classe que hereta de Component i que implementa un accés simple a la base de dades
+ * SQLite , fa servir routing
+ * @version 1.0 05.04.2020
  * @author sergi.grau@fje.edu
  */
 
-import { Camera } from 'expo-camera';
 
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: '#000',
-  },
-  preview: {
-    flex: 2,
-    justifyContent: 'flex-end',
-    alignItems: 'center',
-    
-  },
-  capture: {
-    width: 200,
-    height: 40,
-    borderRadius: 35,
-    borderWidth: 5,
-    borderColor: '#FFF',
-    marginBottom: 15,
 
-  },
-  cancel: {
-    position: 'absolute',
-    right: 20,
-    top: 20,
-    backgroundColor: 'transparent',
-    color: '#FFF',
-    fontWeight: '600',
-    fontSize: 17,
-  }
 });
 
-export class M07_Camera extends React.Component {
+export class M09_Sqlite extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = {
-      path: null,
-    };
+    db.transaction(function(txn) {
+      txn.executeSql(
+        "SELECT name FROM sqlite_master WHERE type='table' AND name='table_user'",
+        [],
+        function(tx, res) {
+          console.log('item:', res.rows.length);
+          if (res.rows.length == 0) {
+            txn.executeSql('DROP TABLE IF EXISTS table_user', []);
+            txn.executeSql(
+              'CREATE TABLE IF NOT EXISTS table_user(user_id INTEGER PRIMARY KEY AUTOINCREMENT, user_name VARCHAR(20), user_contact INT(10), user_address VARCHAR(255))',
+              []
+            );
+          }
+        }
+      );
+    });
   }
-
-  takePicture = async () => {
-    try {
-      const data = await this.camera.takePictureAsync();
-      this.setState({ path: data.uri });
-      // this.props.updateImage(data.uri);
-      // console.log('Path to image: ' + data.uri);
-    } catch (err) {
-      console.log('err: ', err);
-    }
-  };
-
-  renderCamera() {
-    return (
-      <Camera
-        ref={(cam) => {
-          this.camera = cam;
-        }}
-        style={styles.preview}
-        flashMode={Camera.Constants.FlashMode.off}
-        permissionDialogTitle={'Permission to use camera'}
-        permissionDialogMessage={'We need your permission to use your camera phone'}
-      >
-        <TouchableHighlight
-          style={styles.capture}
-          onPress={this.takePicture.bind(this)}
-          underlayColor="rgba(255, 255, 255, 0.5)"
-        >
-          <View />
-        </TouchableHighlight>
-      </Camera>
-    );
-  }
-
-  renderImage() {
-    return (
-      <View>
-        <Image
-          source={{ uri: this.state.path }}
-          style={styles.preview}
-        />
-        <Text
-          style={styles.cancel}
-          onPress={() => this.setState({ path: null })}
-        >Cancel
-        </Text>
-      </View>
-    );
-  }
-
   render() {
     return (
-      <View style={styles.container}>
-        {this.state.path ? this.renderImage() : this.renderCamera()}
+      <View
+        style={{
+          flex: 1,
+          backgroundColor: 'white',
+          flexDirection: 'column',
+        }}>
+        <Mytext text="SQLite Example" />
+        <Mybutton
+          title="Register"
+          customClick={() => this.props.navigation.navigate('Register')}
+        />
+        <Mybutton
+          title="Update"
+          customClick={() => this.props.navigation.navigate('Update')}
+        />
+        <Mybutton
+          title="View"
+          customClick={() => this.props.navigation.navigate('View')}
+        />
+        <Mybutton
+          title="View All"
+          customClick={() => this.props.navigation.navigate('ViewAll')}
+        />
+        <Mybutton
+          title="Delete"
+          customClick={() => this.props.navigation.navigate('Delete')}
+        />
       </View>
     );
   }

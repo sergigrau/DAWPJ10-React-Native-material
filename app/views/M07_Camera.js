@@ -6,7 +6,7 @@ import { TouchableHighlight, StyleSheet, Image, Text, View } from 'react-native'
  * Classe que hereta de Component i que implementa un component
  * independent en l'app. És un component bàsic sense estils
  * Fa servir routing
- * @version 1.0 23.03.2020
+ * @version 1.0 05.04.2020
  * @author sergi.grau@fje.edu
  */
 
@@ -47,15 +47,13 @@ const styles = StyleSheet.create({
 });
 
 export class M07_Camera extends React.Component {
-
   constructor(props) {
     super(props);
     this.state = {
       path: null,
     };
   }
-
-  takePicture = async () => {
+  ferFoto = async () => {
     try {
       const data = await this.camera.takePictureAsync();
       this.setState({ path: data.uri });
@@ -65,7 +63,6 @@ export class M07_Camera extends React.Component {
       console.log('err: ', err);
     }
   };
-
   renderCamera() {
     return (
       <Camera
@@ -74,12 +71,12 @@ export class M07_Camera extends React.Component {
         }}
         style={styles.preview}
         flashMode={Camera.Constants.FlashMode.off}
-        permissionDialogTitle={'Permission to use camera'}
-        permissionDialogMessage={'We need your permission to use your camera phone'}
+        permissionDialogTitle={'permis denegat'}
+        permissionDialogMessage={'calen permisos per a fer servir la càmera'}
       >
         <TouchableHighlight
           style={styles.capture}
-          onPress={this.takePicture.bind(this)}
+          onPress={this.ferFoto.bind(this)}
           underlayColor="rgba(255, 255, 255, 0.5)"
         >
           <View />
