@@ -2,13 +2,13 @@
 Workshop of react native
 <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/React-icon.svg/200px-React-icon.svg.png">
 
-M00. Simple React component
-M01. Properties and states
-M02. Styles
-M03. Events
-M04. Flex
-M05. Routing
-M06. Routing and components
-M07. Camera
-M08. Maps
-M09. SQLite
+M00. Simple React component <br>
+M01. Properties and states  <br>
+M02. Styles  <br>
+M03. Events  <br>
+M04. Flex<br>
+M05. Routing<br>
+M06. Routing and components<br>
+M07. Camera<br>
+M08. Maps<br>
+M09. SQLite<br>

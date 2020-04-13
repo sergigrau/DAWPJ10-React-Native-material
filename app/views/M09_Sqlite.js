@@ -3,7 +3,8 @@ import { StyleSheet, Text, View } from 'react-native';
 import * as SQLite from 'expo-sqlite';
 
 /**
- * Classe que hereta de Component i que treballa amb estils
+ * Classe que hereta de Component i que treballa amb el
+ * component de SQLite. Les dades es mostren per consola per a facilitar l'exercici
  * @version 1.0 23.03.2020
  * @author sergi.grau@fje.edu
  */
@@ -20,7 +21,6 @@ const estils = StyleSheet.create({
     backgroundColor: '#FA0'
   },
 });
-
 export class M09_Sqlite extends React.Component {
   constructor(props) {
     super(props);
