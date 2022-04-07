@@ -42,6 +42,10 @@ export class M06_Home extends React.Component {
             title="Anar a SQLite"
             onPress={() => this.props.navigation.navigate('SQLite')}
           />
+            <Button
+            title="Anar a Suma"
+            onPress={() => this.props.navigation.navigate('Suma')}
+          />
         </View>
       );
 
