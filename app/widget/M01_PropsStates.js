@@ -1,5 +1,6 @@
 import React from 'react';
 import { Text, View } from 'react-native';
+import {useState} from "react";
 
 /**
  * Classe que hereta de Component i que permet utilitzar 
