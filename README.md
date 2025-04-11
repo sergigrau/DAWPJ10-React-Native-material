@@ -1,4 +1,4 @@
-# DAW2M14-React-Native
+# DAW2PJ10-React-Native
 Workshop of react native
 <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/React-icon.svg/200px-React-icon.svg.png">
 

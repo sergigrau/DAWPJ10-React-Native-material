@@ -22,29 +22,57 @@ const estils = StyleSheet.create({
   },
 });
 export class M09_Sqlite extends React.Component {
+
+  componentDidMount() {
+    SQLite.openDatabaseAsync('daw2').then(db => {
+      db.execAsync(`
+          PRAGMA journal_mode = WAL;
+          CREATE TABLE IF NOT EXISTS alumnes (id INTEGER PRIMARY KEY NOT NULL, nom TEXT NOT NULL, nota INTEGER);
+          INSERT INTO alumnes (id, nom, nota) VALUES (1,'sergi', 8);
+          INSERT INTO alumnes (id, nom, nota) VALUES (2,'joan', 6);
+          `).then(() => {
+        console.log('taula creada i dades afegides');
+        db.getAllAsync('SELECT * FROM alumnes').then((rows ) => {;
+        for (const row of rows) {
+          console.log(row.id, row.nom, row.nota);
+        }
+      }).catch(e => { 
+        console.log(e);
+      }
+      );
+      });
+    }).catch(e => { 
+      console.log(e);
+    }
+    );;
+  }
+
   constructor(props) {
     super(props);
     this.state = {
       path: null,
     };
-    db = SQLite.openDatabase("db.db");
 
-    db.transaction(tx => {
-      tx.executeSql(
-        "create table if not exists items (id integer primary key not null, done int, value text);"
+    /*
+    SQLite.openDatabaseAsync("db.db").then(db => {
+      db.runSync("create table if not exists items (id integer primary key not null, done int, value text);");
+      console.log('creada taula');
+    }).then(db => {
+      console.log('executant insercions')
+      db.runSync("insert into items (done, value) values (0, ?)", ['primer']);
+      db.runSync("insert into items (done, value) values (1, ?)", ['segon']);
+      db.runSync("insert into items (done, value) values (2, ?)", ['tercer']);
+    }).then(db => {
+      console.log('executant consulta')
+      db.runSync("select * from items", [], (_, { rows }) =>
+        console.log(JSON.stringify(rows))
       );
-    });
-    console.log('creada taula');
-    db.transaction(
-      tx => {
-        tx.executeSql("insert into items (done, value) values (0, ?)", ['primer']);
-        tx.executeSql("insert into items (done, value) values (1, ?)", ['segon']);
-        tx.executeSql("insert into items (done, value) values (2, ?)", ['tercer']);
-        tx.executeSql("select * from items", [], (_, { rows }) =>
-          console.log(JSON.stringify(rows))
-        );
+    })
+      .catch(e => {
+        console.log(e);
       }
-    );
+      );
+      */
   }
 
   render() {

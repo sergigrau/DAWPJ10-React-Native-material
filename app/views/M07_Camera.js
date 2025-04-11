@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Button, Image } from 'react-native';
+import { Text, View, Button, Image } from 'react-native';
 import { Camera } from 'expo-camera';
 import * as MediaLibrary from 'expo-media-library';
 
@@ -15,8 +15,8 @@ export class M07_Camera extends React.Component {
   }
 
   async componentDidMount() {
-    const { status } = await Camera.requestPermissionsAsync();
-    this.setState({ hasPermission: status === 'granted' });
+    const { status } = await Camera.requestCameraPermissionsAsync();
+    this.setState({ hasCameraPermission:status === 'granted' });
     const { status: mediaLibStatus } = await MediaLibrary.requestPermissionsAsync();
     this.setState({ hasMediaLibPermission: mediaLibStatus === 'granted' });
 
