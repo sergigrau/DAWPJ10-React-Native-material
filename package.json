@@ -15,6 +15,7 @@
     "expo-asset": "^11.0.5",
     "expo-camera": "^16.0.18",
     "expo-file-system": "^18.0.12",
+    "expo-location": "^18.0.10",
     "expo-media-library": "^17.0.6",
     "expo-sqlite": "^15.1.4",
     "expo-status-bar": "~2.0.1",

@@ -8,6 +8,7 @@ import {M07_Camera} from './app/views/M07_Camera';
 import {M08_Mapes} from './app/views/M08_Mapes';
 import {M09_Sqlite} from './app/views/M09_Sqlite';
 import { M10_CSV } from './app/views/M10_CSV';
+import { M11_Suma } from './app/views/M11_Suma';
 /**
  * Modificacions al component principal d'entrada de React
  * per incloure encaminaments, però no components
@@ -27,6 +28,7 @@ function App() {
         <Stack.Screen name="Mapes" component={M08_Mapes} />
         <Stack.Screen name="SQLite" component={M09_Sqlite} />
         <Stack.Screen name="CSV" component={M10_CSV} />
+        <Stack.Screen name="Suma" component={M11_Suma} />
       </Stack.Navigator>
     </NavigationContainer>
   );
