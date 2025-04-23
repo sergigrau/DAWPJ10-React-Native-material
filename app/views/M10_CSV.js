@@ -69,14 +69,20 @@ export class M10_CSV extends React.Component {
   async componentDidMount() {
     try {
       try {
-
-        const fitxerCSV =  require('../../assets/dades.csv') 
+        // Load the CSV file as an asset
+        const asset = Asset.fromModule(require('../../assets/dades.csv'));
+        await asset.downloadAsync();
         
-        this.processarCSV(fitxerCSV);
+        // Read the file content
+        const fileContent = await FileSystem.readAsStringAsync(asset.localUri);
+        
+        // Process the CSV content
+        this.processarCSV(fileContent);
+        
       } catch (error) {
         console.log('Error al carregar el fitxer CSV:', error);
         
-        // Si no podem carregar el fitxer, utilitzem les dades d'exemple
+        // If we can't load the file, use the example data
         this.processarCSV(csvExemple);
       }
     } catch (error) {
